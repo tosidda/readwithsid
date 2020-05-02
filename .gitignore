@@ -1,0 +1,10 @@
+#project crap
+node_modules
+.cache
+
+#the public folder
+public
+
+#I don't know
+.DS_Store
+yarn-error.log

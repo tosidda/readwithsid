@@ -2,24 +2,34 @@ import React from 'react'
 import { useSiteMetadata } from '../hooks/useSiteMetadata'
 import styled from 'styled-components'
 import { Layout } from '../components/Layout'
-import {graphql} from 'gatsby'
+import {graphql, Link} from 'gatsby'
 import Dump from '../components/Dump'
 
 
+const IndexWrapper = styled.main`
+  
+`
+
+const PostWrapper = styled.div`
+
+`;
+
 export default ({data}) => {
     return (
-       <>
         <Layout>
-          <Dump poop={data}></Dump>
-          {data.allMdx.nodes.map(({excerpt, frontmatter}) => (
-            <>
-            <h1>{frontmatter.title}</h1>
-            <h1>{frontmatter.date}</h1>
-            <p>{excerpt}</p>
-            </>
-          ))}
+          <IndexWrapper>
+          {/* <Dump poop={data}></Dump> */}
+            {data.allMdx.nodes.map(({id, excerpt, frontmatter, fields}) => (
+              <PostWrapper key={id}>
+                <Link to={fields.slug}>
+                <h1>{frontmatter.title}</h1>
+                <h1>{frontmatter.date}</h1>
+                <p>{excerpt}</p>
+                </Link>
+              </PostWrapper>
+           ))}
+          </IndexWrapper>
         </Layout>
-       </>
     )
 }
 

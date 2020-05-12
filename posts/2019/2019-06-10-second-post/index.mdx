@@ -16,7 +16,30 @@ This my second post
 `console.log('I SAY BANANA YOU SAY BONANA')`
 
 ```js
-function poop() {
-    return 'poop'
+class Ball {
+    constructor() {
+        this.x = 90;
+        this.y = 80;
+    }
+
+    move(dir) {
+        if (dir === 'left') {
+            this.x - 1;
+        } else if (dir === 'right') {
+            this.x- 1;
+        }
+
+    }
+
 }
+let ball = new Ball;
+
+document.addEventListener('keydown', (e) => {
+    if (e.keyCode === 
+'left key code') {
+    ball.move('left')
+} else if (e.keyCode === 'right key code') {
+    ball.move('right')
+}
+})
 ```

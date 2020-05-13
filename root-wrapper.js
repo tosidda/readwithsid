@@ -12,7 +12,7 @@ const component = {
     return (<code {...props} style={{backgroundColor: 'lightgrey'}} />)
     },
     pre: ({children: {props}}) => {
-      return <Code codeString={props.children.trim()} language={props.className && props.className.replace('--language', '') }
+      return <Code theme={theme} codeString={props.children.trim()} language={props.className && props.className.replace('language-', '') }
       {...props}/>  
     }
 }

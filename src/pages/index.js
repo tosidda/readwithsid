@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import { Layout } from '../components/Layout'
 import {graphql, Link} from 'gatsby'
 import Dump from '../components/Dump'
+import Img from 'gatsby-image'
 
 
 const IndexWrapper = styled.main`
@@ -14,6 +15,10 @@ const PostWrapper = styled.div`
 
 `;
 
+const Image = styled(Img)`
+  border-radius: 5px;
+`
+
 export default ({data}) => {
     return (
         <Layout>
@@ -22,6 +27,7 @@ export default ({data}) => {
             {data.allMdx.nodes.map(({id, excerpt, frontmatter, fields}) => (
               <PostWrapper key={id}>
                 <Link to={fields.slug}>
+                {!!frontmatter.cover ? (<Image sizes={frontmatter.cover.childImageSharp.sizes}/>) : null}
                 <h1>{frontmatter.title}</h1>
                 <h1>{frontmatter.date}</h1>
                 <p>{excerpt}</p>
@@ -41,8 +47,19 @@ query SITE_INDEX_QUERY {
           excerpt(pruneLength: 250)
           id
           frontmatter {
-            date
+            date(formatString: "YYYY MMMM Do")
             title
+            cover {
+              publicURL
+              childImageSharp {
+                sizes(
+                  maxWidth: 2000
+                  traceSVG: { color: "#639" }
+                ) {
+                  ...GatsbyImageSharpSizes_tracedSVG
+                }
+              }
+            }
           }
           fields {
             slug

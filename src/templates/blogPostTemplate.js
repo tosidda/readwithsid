@@ -13,8 +13,9 @@ export default ({data, pageContext}) => {
     const {title, cover, date} = frontmatter
     return (
         <Layout>
-            <Dump
+            <SEO
                 title={title}
+                titleTemplate={useSiteMetadata().title}
                 description={excerpt}
                 image={`${siteUrl}${image}`}
                 image={cover === null ? `${siteUrl}${image}` : `${siteUrl}${cover.publicURL}`}

@@ -36,6 +36,7 @@ export default ({data}) => {
         <Layout>
           <SEO
             title={title}
+            titleTemplate="Home"
             description={description}
             image={`${siteUrl}${image}`}
             pathname={siteUrl}
